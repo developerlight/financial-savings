@@ -1,6 +1,8 @@
 import Admin from "../models/adminSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import User from "../models/userSchema.js";
+import Tabungan from "../models/tabunganSchema.js";
 
 const authController = {
   registerAdmin: async (req, res) => {
@@ -60,6 +62,37 @@ const authController = {
     try {
       req.session.destroy();
       res.json({ message: "Logout Success" });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+  registerUser: async (req, res) => {
+    const { username, password, email, phone, address } = req.body;
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    try {
+      const user = await User.create({
+        username,
+        password: hashedPassword,
+        email,
+        phone, 
+        address 
+      });
+ 
+      if (!user) {
+        return res.status(400).json({ error: "Register Failed" });
+      }
+
+      const tabungan = await Tabungan.create({
+        userId: user._id,
+
+      });
+
+      if (!tabungan) {
+        return res.status(400).json({ error: "Register Failed" });
+      }
+
+      res.json({ message: "Register Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

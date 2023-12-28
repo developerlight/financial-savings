@@ -6,10 +6,10 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     tabunganId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Tabungan",
-        required: true,
+        ref: "Tabungan"
     },
-    contactPerson: { type: String, unique: true, required: true },
+    address: { type: String, required: true },
+    phone: { type: String, unique: true, required: true },
     joined_at: { type: Date, default: Date.now }
 });
 

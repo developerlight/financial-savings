@@ -1,30 +1,33 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const tabunganSchema = new mongoose.Schema({
-    idUser: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: true
     },
     date: {
         type: Date,
-        required: true
+        default: Date.now
     },
     uang: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     saldo: {
         type: Number,
-        required: true
+        default: 0
     },
     status: {
         type: String,
-        enum: ['setor', 'tarik'],
-        required: true
+        enum: ['pembuatan','setor', 'tarik'],
+        required: true,
+        default : 'pembuatan'
     }
 });
 
 const Tabungan = mongoose.model('Tabungan', tabunganSchema);
 
-module.exports = Tabungan;
+export default Tabungan; 

@@ -15,7 +15,9 @@ authRouter.post("/admin-login", authController.loginAdmin);
 authRouter.post("/admin-logout", authController.logoutAdmin);
 
 // user
-// register { username = string, password = string, email = string }
+// register { username = string, password = string, email = string , phone = string, address = string}
 authRouter.post("/user-register", authController.registerUser);
+
+
 
 export default authRouter;
