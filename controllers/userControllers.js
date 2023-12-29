@@ -54,17 +54,14 @@ const userControllers = {
     },
     deleteUserById: async (req, res) => {
         try {
-            const tabungan = await Tabungan.findByIdAndDelete(req.params.id);
+            const { tabunganId } = await User.findById(req.params.id);
 
-            if (!tabungan) {
-                return res.status(400).json({ error: "Delete Failed" });
+            for (const id of tabunganId) {
+                console.log(id);
+                await Tabungan.findByIdAndDelete({ _id: id });
             }
 
-            const user = await User.findByIdAndDelete(req.params.id);
-
-            if (!user) {
-                return res.status(400).json({ error: "Delete Failed" });
-            }
+            await User.findByIdAndDelete(req.params.id);
 
             res.json({ message: "Delete Success" });
         } catch (error) {

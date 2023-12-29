@@ -60,4 +60,9 @@ adminRoutes.put("/user/:id",
     // [authJwt.verifyToken, authJwt.isAdmin],
     userControllers.updateUserById);
 
+// delete user by id
+adminRoutes.delete("/user/:id", 
+    // [authJwt.verifyToken, authJwt.isAdmin],
+    userControllers.deleteUserById);
+
 export default adminRoutes;
