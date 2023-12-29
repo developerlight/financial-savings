@@ -18,6 +18,12 @@ authRouter.post("/admin-logout", authController.logoutAdmin);
 // register { username = string, password = string, email = string , phone = string, address = string}
 authRouter.post("/user-register", authController.registerUser);
 
+// login { username = string, password = string }
+authRouter.post("/user-login", authController.loginUser);
+
+// logout
+authRouter.post("/user-logout", authController.logoutUser);
+
 
 
 export default authRouter;

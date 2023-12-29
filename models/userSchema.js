@@ -4,10 +4,12 @@ const userSchema = new mongoose.Schema({
     username: { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    tabunganId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Tabungan"
-    },
+    tabunganId: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Tabungan"
+        }
+    ],
     address: { type: String, required: true },
     phone: { type: String, unique: true, required: true },
     joined_at: { type: Date, default: Date.now }
