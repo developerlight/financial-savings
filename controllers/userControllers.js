@@ -1,7 +1,7 @@
 import Tabungan from "../models/tabunganSchema.js";
 import User from "../models/userSchema.js";
 
-const controllersUser = {
+const userControllers = {
     getAllUsers: async (req, res) => {
         try {
             const users = await User.find();
@@ -30,14 +30,12 @@ const controllersUser = {
     },
     updateUserById: async (req, res) => {
         try {
-            const { username, password, email, phone, address } = req.body;
-            const hashedPassword = bcrypt.hashSync(password, 10);
+            const { username, email, phone, address } = req.body;
 
             const user = await User.findByIdAndUpdate(
                 req.params.id,
                 {
                     username,
-                    password: hashedPassword,
                     email,
                     phone,
                     address
@@ -75,4 +73,4 @@ const controllersUser = {
     }
 }
 
-export default controllersUser;
+export default userControllers;

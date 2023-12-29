@@ -72,7 +72,7 @@ const authController = {
     
     try {
       const tabungan = await Tabungan.create({});
-      console.log(tabungan);
+
       const user = await User.create({
         username,
         password: hashedPassword,
