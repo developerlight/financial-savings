@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import session from "express-session";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import SwaggerSpec from "./middlewares/swagerUi.js";
 
 dotenv.config();
 
@@ -38,6 +41,7 @@ app.use(
         },
     })
 );
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(SwaggerSpec))
 
 // use route
 app.use("/api/auth", authRouter);

@@ -1,6 +1,6 @@
 const dashboardController = {
     test : (req, res) => {
-        res.send("Hello from dashboardController");
+        res.json({ message : "Hello from dashboardController"});
     }
 }
 

@@ -20,7 +20,7 @@ const authController = {
         return res.status(400).json({ error: "Register Failed" });
       }
 
-      res.json({ message: "Register Success" });
+      res.status(201).json({ message: "Register Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -53,7 +53,7 @@ const authController = {
 
       req.session.session = token;
 
-      res.json({ message: "Login Success" });
+      res.status(201).json({ message: "Login Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -61,7 +61,7 @@ const authController = {
   logoutAdmin: async (req, res) => {
     try {
       req.session.destroy();
-      res.json({ message: "Logout Success" });
+      res.status(201).json({ message: "Logout Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -91,7 +91,7 @@ const authController = {
         return res.status(400).json({ error: "Register Failed" });
       }
 
-      res.json({ message: "Register Success" });
+      res.status(201).json({ message: "Register Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -112,7 +112,7 @@ const authController = {
         return res.status(400).json({ error: "Invalid Password" });
       }
 
-      res.json({ message: "Login Success" });
+      res.status(201).json({ message: "Login Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -120,7 +120,7 @@ const authController = {
   logoutUser: async (req, res) => {
     try {
       req.session.destroy();
-      res.json({ message: "Logout Success" });
+      res.status(201).json({ message: "Logout Success" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
