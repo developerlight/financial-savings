@@ -2,12 +2,12 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
-import session from "express-session";
-import swaggerJSDoc from "swagger-jsdoc";
+import session, { MemoryStore } from "express-session";
 import swaggerUi from "swagger-ui-express";
 import SwaggerSpec from "./middlewares/swagerUi.js";
 
 dotenv.config();
+MemoryStore(session)
 
 // route
 import authRouter from "./routes/authRoutes.js";
@@ -25,6 +25,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // middleware
+
 app.use(express.json());
 app.use(cors({ credentials: true, origin: '*' }));
 app.use(
